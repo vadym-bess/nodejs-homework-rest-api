@@ -1,6 +1,7 @@
 const fs = require("fs/promises");
 const uuid = require("uuid").v4;
 const path = require("path");
+
 // const { Contact } = require("../models/contactModel");
 
 const contactsPath = path.resolve(__dirname, "contacts.json");
