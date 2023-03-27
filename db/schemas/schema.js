@@ -12,8 +12,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 6,
     maxlength: 25,
-    required: [true, "Set emaile for contact"],
-    unique: [true, "Set unique emaile for contact"],
+    required: [true, "Set email for contact"],
+    unique: [true, "Set unique email for contact"],
     trim: true,
     lowercase: true,
   },
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const Contact = mongoose.model("Contact", userSchema);
+const Contact = mongoose.model("сontact", userSchema);
 
 module.exports = {
   Contact,

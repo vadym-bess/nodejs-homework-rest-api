@@ -1,4 +1,6 @@
 const Joi = require("joi");
+const { AppError, catchAsync, validators } = require("../utils");
+const User = require("../db/schemas/userSchema");
 
 exports.patchFavoriteValidation = (req, res, next) => {
   const schema = Joi.object({
@@ -42,3 +44,20 @@ exports.putContactValidation = (req, res, next) => {
   }
   next();
 };
+
+exports.checkSignupData = catchAsync(async (req, res, next) => {
+  const { error, value } = validators.signupUserValidator(req.body);
+
+  if (error) return next(new AppError(400, error.details[0].message));
+
+  const { email } = value;
+
+  const userExists = await User.exists({ email });
+
+  if (userExists)
+    return next(new AppError(409, "User with this email already exists.."));
+
+  req.body = value;
+
+  next();
+});
