@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
   password: {
@@ -16,13 +15,14 @@ const userSchema = new mongoose.Schema({
     enum: ["starter", "pro", "business"],
     default: "starter",
   },
+  avatarURL: String,
   token: {
     type: String,
     default: null,
   },
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: "user",
+  verify: {
+    type: Boolean,
+    default: false,
   },
 });
 

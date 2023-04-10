@@ -1,4 +1,6 @@
 const { upload } = require("./uploadAvatar");
+const { confirmUser } = require("./confirmUser");
+const { verifyMiddleware } = require("./verifyMiddleware");
 const { userRegisterValidation } = require("./userMiddleware");
 const {
   postContactValidation,
@@ -12,4 +14,6 @@ module.exports = {
   patchFavoriteValidation,
   userRegisterValidation,
   upload,
+  confirmUser,
+  verifyMiddleware,
 };
