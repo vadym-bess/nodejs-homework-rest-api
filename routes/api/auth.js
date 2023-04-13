@@ -5,8 +5,14 @@ const {
   logout,
   current,
   avatars,
+  verifyEmail,
+  resendEmail,
 } = require("../../controllers/auth");
-const { userRegisterValidation, upload } = require("../../middlewares");
+const {
+  userRegisterValidation,
+  upload,
+  verifyMiddleware,
+} = require("../../middlewares");
 const { authMiddleware } = require("../../middlewares/authMiddleware");
 
 const router = express.Router();
@@ -16,5 +22,7 @@ router.post("/login", userRegisterValidation, login);
 router.post("/logout", authMiddleware, logout);
 router.post("/current", authMiddleware, current);
 router.patch("/avatars", authMiddleware, upload.single("avatars"), avatars);
+router.get("/verify/:verificationToken", verifyEmail);
+router.post("/verify", verifyMiddleware, resendEmail);
 
 module.exports = { authRouter: router };
